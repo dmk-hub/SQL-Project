@@ -1,123 +1,108 @@
--- create database
-create database company;
-use company;
+CREATE DATABASE COMPANY;
+USE COMPANY;
 
--- create employee first 
-create table employee (
-    fname           varchar(50) not null,
-    lname           varchar(50) not null,
-    ssn             char(9) primary key,
-    bdate           date,
-    address         varchar(100),
-    salary          decimal(10,2),
-    dno             int,
-    supervisor_ssn  char(9),
-    partner_ssn     char(9),
-    constraint fk_supervisor foreign key (supervisor_ssn) references employee (ssn)
+CREATE TABLE EMPLOYEE (
+    FNAME           VARCHAR(50) NOT NULL,
+    LNAME           VARCHAR(50) NOT NULL,
+    SSN             CHAR(9) PRIMARY KEY,
+    BDATE           DATE,
+    ADDRESS         VARCHAR(100),
+    SALARY          DECIMAL(10,2),
+    DNO             INT,
+    SUPERVISOR_SSN  CHAR(9),
+    PARTNER_SSN     CHAR(9),
+    CONSTRAINT FK_SUPERVISOR FOREIGN KEY (SUPERVISOR_SSN) REFERENCES EMPLOYEE (SSN)
 );
 
--- create department
-create table department (
-    dname           varchar(50) not null unique,
-    dnumber         int primary key,
-    mgr_ssn         char(9),
-    mgr_start_date  date,
-    constraint fk_mgr foreign key (mgr_ssn) references employee (ssn)
+CREATE TABLE DEPARTMENT (
+    DNAME           VARCHAR(50) NOT NULL UNIQUE,
+    DNUMBER         INT PRIMARY KEY,
+    MGR_SSN         CHAR(9),
+    MGR_START_DATE  DATE,
+    CONSTRAINT FK_MGR FOREIGN KEY (MGR_SSN) REFERENCES EMPLOYEE (SSN)
 );
 
--- add foreign key from employee to department
-alter table employee
-    add constraint fk_dept foreign key (dno) references department (dnumber);
+ALTER TABLE EMPLOYEE
+    ADD CONSTRAINT FK_DEPT FOREIGN KEY (DNO) REFERENCES DEPARTMENT (DNUMBER);
 
--- create dept_location
-create table dept_location (
-    dnumber     int,
-    dlocation   varchar(50),
-    primary key (dnumber, dlocation),
-    constraint fk_deptloc_dept foreign key (dnumber) references department (dnumber)
+CREATE TABLE DEPT_LOCATION (
+    DNUMBER     INT,
+    DLOCATION   VARCHAR(50),
+    PRIMARY KEY (DNUMBER, DLOCATION),
+    CONSTRAINT FK_DEPTLOC_DEPT FOREIGN KEY (DNUMBER) REFERENCES DEPARTMENT (DNUMBER)
 );
 
--- create project
-create table project (
-    pname       varchar(50) not null,
-    pnumber     int primary key,
-    plocation   varchar(50),
-    dnum        int,
-    constraint fk_proj_dept foreign key (dnum) references department (dnumber)
+CREATE TABLE PROJECT (
+    PNAME       VARCHAR(50) NOT NULL,
+    PNUMBER     INT PRIMARY KEY,
+    PLOCATION   VARCHAR(50),
+    DNUM        INT,
+    CONSTRAINT FK_PROJ_DEPT FOREIGN KEY (DNUM) REFERENCES DEPARTMENT (DNUMBER)
 );
 
--- create work_on
-create table work_on (
-    essn    char(9),
-    pno     int,
-    hours   decimal(5,2),
-    primary key (essn, pno),
-    constraint fk_work_emp foreign key (essn) references employee (ssn),
-    constraint fk_work_proj foreign key (pno) references project (pnumber)
+CREATE TABLE WORK_ON (
+    ESSN    CHAR(9),
+    PNO     INT,
+    HOURS   DECIMAL(5,2),
+    PRIMARY KEY (ESSN, PNO),
+    CONSTRAINT FK_WORK_EMP FOREIGN KEY (ESSN) REFERENCES EMPLOYEE (SSN),
+    CONSTRAINT FK_WORK_PROJ FOREIGN KEY (PNO) REFERENCES PROJECT (PNUMBER)
 );
 
--- create dependent
-create table dependent (
-    essn            char(9),
-    dependent_name  varchar(50),
-    sex             char(1),
-    bdate           date,
-    relationship    varchar(25),
-    primary key (essn, dependent_name),
-    constraint fk_dep_emp foreign key (essn) references employee (ssn)
+CREATE TABLE DEPENDENT (
+    ESSN            CHAR(9),
+    DEPENDENT_NAME  VARCHAR(50),
+    SEX             CHAR(1),
+    BDATE           DATE,
+    RELATIONSHIP    VARCHAR(25),
+    PRIMARY KEY (ESSN, DEPENDENT_NAME),
+    CONSTRAINT FK_DEP_EMP FOREIGN KEY (ESSN) REFERENCES EMPLOYEE (SSN)
 );
 
--- insert department info
-insert into department (dname, dnumber, mgr_ssn, mgr_start_date)
-values
-    ('love research', 1, null, '2025-11-18'),
-    ('romance administration', 2, null, '2025-11-19');
+INSERT INTO DEPARTMENT (DNAME, DNUMBER, MGR_SSN, MGR_START_DATE)
+VALUES
+    ('LOVE RESEARCH', 1, NULL, '2025-11-18'),
+    ('ROMANCE ADMINISTRATION', 2, NULL, '2025-11-19');
 
--- insert dept_location info
-insert into dept_location (dnumber, dlocation)
-values
-    (1, 'tokyo'),
-    (1, 'kyoto'),
-    (2, 'osaka');
+INSERT INTO DEPT_LOCATION (DNUMBER, DLOCATION)
+VALUES
+    (1, 'TOKYO'),
+    (1, 'KYOTO'),
+    (2, 'OSAKA');
 
--- insert employees info
-insert into employee (fname, lname, ssn, bdate, address, salary, dno, supervisor_ssn, partner_ssn)
-values
-    ('kaguya', 'shinomiya', '111111111', '1998-01-01', 'tokyo academy', 75000, 1, null, null),
-    ('miyuki', 'shirogane', '222222222', '1997-03-09', 'student council hall', 82000, 1, '111111111', '333333333'),
-    ('gojo', 'wakana', '333333333', '1996-05-05', 'shibuya district', 95000, 2, null, null),
-    ('marin', 'kitagawa', '444444444', '1999-07-07', 'harajuku street', 60000, 2, '333333333', null),
-    ('chika', 'fujiwara', '555555555', '1998-12-12', 'kanda shrine area', 70000, 1, '111111111', null);
+INSERT INTO EMPLOYEE (FNAME, LNAME, SSN, BDATE, ADDRESS, SALARY, DNO, SUPERVISOR_SSN, PARTNER_SSN)
+VALUES
+    ('KAGUYA', 'SHINOMIYA', '111111111', '1998-01-01', 'TOKYO ACADEMY', 75000, 1, NULL, NULL),
+    ('MIYUKI', 'SHIROGANE', '222222222', '1997-03-09', 'STUDENT COUNCIL HALL', 82000, 1, '111111111', '333333333'),
+    ('GOJO', 'WAKANA', '333333333', '1996-05-05', 'SHIBUYA DISTRICT', 95000, 2, NULL, NULL),
+    ('MARIN', 'KITAGAWA', '444444444', '1999-07-07', 'HARAJUKU STREET', 60000, 2, '333333333', NULL),
+    ('CHIKA', 'FUJIWARA', '555555555', '1998-12-12', 'KANDA SHRINE AREA', 70000, 1, '111111111', NULL);
 
--- insert projects info
-insert into project (pname, pnumber, plocation, dnum)
-values
-    ('project confession war', 101, 'tokyo', 1),
-    ('project cosplay hearts', 102, 'osaka', 2),
-    ('project love is war', 103, 'kyoto', 1);
+INSERT INTO PROJECT (PNAME, PNUMBER, PLOCATION, DNUM)
+VALUES
+    ('PROJECT CONFESSION WAR', 101, 'TOKYO', 1),
+    ('PROJECT COSPLAY HEARTS', 102, 'OSAKA', 2),
+    ('PROJECT LOVE IS WAR', 103, 'KYOTO', 1);
 
--- insert work_on info
-insert into work_on (essn, pno, hours)
-values
+INSERT INTO WORK_ON (ESSN, PNO, HOURS)
+VALUES
     ('111111111', 101, 20.0),
     ('222222222', 101, 15.5),
     ('333333333', 102, 30.0),
     ('444444444', 102, 25.0),
     ('555555555', 103, 10.0);
 
--- insert dependents info
-insert into dependent (essn, dependent_name, sex, bdate, relationship)
-values
-    ('111111111', 'ai hayasaka', 'F', '1999-02-14', 'assistant'),
-    ('222222222', 'kei shirogane', 'F', '2005-06-01', 'sister'),
-    ('333333333', 'grandpa gojo', 'M', '1945-11-11', 'grandparent'),
-    ('444444444', 'cosplay buddy', 'F', '2000-08-08', 'friend'),
-    ('555555555', 'dance partner', 'M', '1998-09-09', 'friend');
+INSERT INTO DEPENDENT (ESSN, DEPENDENT_NAME, SEX, BDATE, RELATIONSHIP)
+VALUES
+    ('111111111', 'AI HAYASAKA', 'F', '1999-02-14', 'ASSISTANT'),
+    ('222222222', 'KEI SHIROGANE', 'F', '2005-06-01', 'SISTER'),
+    ('333333333', 'GRANDPA GOJO', 'M', '1945-11-11', 'GRANDPARENT'),
+    ('444444444', 'COSPLAY BUDDY', 'F', '2000-08-08', 'FRIEND'),
+    ('555555555', 'DANCE PARTNER', 'M', '1998-09-09', 'FRIEND');
 
--- cleanup 
-drop table work_on;
-drop table dependent;
-drop table project;
-drop table dept_location;
-drop table employee;
-drop table department;
+DROP TABLE WORK_ON;
+DROP TABLE DEPENDENT;
+DROP TABLE PROJECT;
+DROP TABLE DEPT_LOCATION;
+DROP TABLE EMPLOYEE;
+DROP TABLE DEPARTMENT;
