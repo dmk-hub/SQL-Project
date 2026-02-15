@@ -1,0 +1,123 @@
+$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.44-0ubuntu0.24.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> drop database if exists company;
+Query OK, 2 rows affected (0,05 sec)
+
+mysql> create database company;
+Query OK, 1 row affected (0,00 sec)
+
+mysql> use company;
+Database changed
+mysql> source /home/shibuya/Downloads/Lab1.sql;
+ERROR 1007 (HY000): Can't create database 'company'; database exists
+Database changed
+Query OK, 0 rows affected (0,03 sec)
+
+Query OK, 0 rows affected (0,05 sec)
+
+Query OK, 0 rows affected (0,09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0,03 sec)
+
+Query OK, 0 rows affected (0,03 sec)
+
+Query OK, 0 rows affected (0,04 sec)
+
+Query OK, 0 rows affected (0,03 sec)
+
+Query OK, 2 rows affected (0,00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+Query OK, 3 rows affected (0,01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+Query OK, 5 rows affected (0,00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+Query OK, 3 rows affected (0,01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+Query OK, 5 rows affected (0,00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+Query OK, 5 rows affected (0,01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+Query OK, 0 rows affected (0,01 sec)
+
+Query OK, 0 rows affected (0,01 sec)
+
+Query OK, 0 rows affected (0,02 sec)
+
+Query OK, 0 rows affected (0,01 sec)
+
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'fk_mgr' on table 'department'.
+ERROR 3730 (HY000): Cannot drop table 'department' referenced by a foreign key constraint 'fk_dept' on table 'employee'.
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| department        |
+| employee          |
++-------------------+
+2 rows in set (0,00 sec)
+
+mysql> select * from employee;
++--------+-----------+-----------+------------+----------------------+----------+------+----------------+-------------+
+| fname  | lname     | ssn       | bdate      | address              | salary   | dno  | supervisor_ssn | partner_ssn |
++--------+-----------+-----------+------------+----------------------+----------+------+----------------+-------------+
+| kaguya | shinomiya | 111111111 | 1998-01-01 | tokyo academy        | 75000.00 |    1 | NULL           | NULL        |
+| miyuki | shirogane | 222222222 | 1997-03-09 | student council hall | 82000.00 |    1 | 111111111      | 333333333   |
+| gojo   | wakana    | 333333333 | 1996-05-05 | shibuya district     | 95000.00 |    2 | NULL           | NULL        |
+| marin  | kitagawa  | 444444444 | 1999-07-07 | harajuku street      | 60000.00 |    2 | 333333333      | NULL        |
+| chika  | fujiwara  | 555555555 | 1998-12-12 | kanda shrine area    | 70000.00 |    1 | 111111111      | NULL        |
++--------+-----------+-----------+------------+----------------------+----------+------+----------------+-------------+
+5 rows in set (0,01 sec)
+
+mysql> select * from department;
++------------------------+---------+---------+----------------+
+| dname                  | dnumber | mgr_ssn | mgr_start_date |
++------------------------+---------+---------+----------------+
+| love research          |       1 | NULL    | 2025-11-18     |
+| romance administration |       2 | NULL    | 2025-11-19     |
++------------------------+---------+---------+----------------+
+2 rows in set (0,00 sec)
+
+mysql> select * from project;
+ERROR 1146 (42S02): Table 'company.project' doesn't exist
+mysql> select * from work_on;
+ERROR 1146 (42S02): Table 'company.work_on' doesn't exist
+mysql> select * from dependent;
+ERROR 1146 (42S02): Table 'company.dependent' doesn't exist
+mysql> describe employee;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| fname          | varchar(50)   | NO   |     | NULL    |       |
+| lname          | varchar(50)   | NO   |     | NULL    |       |
+| ssn            | char(9)       | NO   | PRI | NULL    |       |
+| bdate          | date          | YES  |     | NULL    |       |
+| address        | varchar(100)  | YES  |     | NULL    |       |
+| salary         | decimal(10,2) | YES  |     | NULL    |       |
+| dno            | int           | YES  | MUL | NULL    |       |
+| supervisor_ssn | char(9)       | YES  | MUL | NULL    |       |
+| partner_ssn    | char(9)       | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+9 rows in set (0,01 sec)
+
+mysql> 
+
+
