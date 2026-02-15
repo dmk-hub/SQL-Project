@@ -28,11 +28,18 @@ mysql -u root -p
 ```bash
 CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'Password!';
 ```
-<p align="center">
-dbuser→theusernameyouwant.<br>
-localhost→restrictslogintolocalmachine(use%foranyhostifyouwantremoteaccess).<br>
-Password→replacewithasecurepassword.
-</p>
+## Grant privileges to the new user
+```bash
+GRANT ALL PRIVILEGES ON company.* TO 'dbuser'@'localhost';
+```
+## Apply changes
+```bash
+FLUSH PRIVILEGES;
+```
+## Test login with the new account
+```bash
+mysql -u dbuser -p
+```
 
 
 
