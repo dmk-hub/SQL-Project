@@ -1,0 +1,11 @@
+TABLE        | FOREIGN KEY COLUMN | REFERENCES
+-------------|--------------------|----------------------------
+EMPLOYEE     | Dno                | DEPARTMENT.Dnumber
+EMPLOYEE     | Super_ssn          | EMPLOYEE.Ssn
+DEPARTMENT   | Mgr_ssn            | EMPLOYEE.Ssn
+DEPT_LOCATION| Dnumber            | DEPARTMENT.Dnumber
+PROJECT      | Dnum               | DEPARTMENT.Dnumber
+WORKS_ON     | Essn               | EMPLOYEE.Ssn
+WORKS_ON     | Pno                | PROJECT.Pnumber
+DEPENDENT    | Essn               | EMPLOYEE.Ssn
+
