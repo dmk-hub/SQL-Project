@@ -19,7 +19,7 @@ sudo mysql_secure_installation
 mysql --version
 sudo systemctl status mysql
 ```
-## After Installation
+# After Installation
 ## Log in to MySQL as root
 ```bash
 mysql -u root -p
@@ -29,5 +29,9 @@ mysql -u root -p
 CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'Password!';
 ```
 dbuser → the username you want.
+
 localhost → restricts login to local machine (use % for any host if you want remote access).
+
 Password → replace with a secure password.
+
+
