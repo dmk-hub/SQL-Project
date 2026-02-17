@@ -1,0 +1,84 @@
+shibuya@shibuya-Latitude-E6330:~/SQL$ mysql -u root -p northwind < Lab2.sql
+Enter password: 
+id	product_name
+1	Northwind Traders Chai
+8	Northwind Traders Curry Sauce
+41	Northwind Traders Clam Chowder
+56	Northwind Traders Gnocchi
+81	Northwind Traders Green Tea
+86	Northwind Traders Cake Mix
+92	Northwind Traders Green Beans
+97	Northwind Traders Hot Cereal
+99	Northwind Traders Chicken Soup
+product_name	list_price
+Northwind Traders Green Beans	1.2000
+Northwind Traders Corn	1.2000
+Northwind Traders Pears	1.3000
+Northwind Traders Peaches	1.5000
+product_name	id	list_price
+Northwind Traders Chai	1	18.0000
+Northwind Traders Cajun Seasoning	4	22.0000
+Northwind Traders Olive Oil	5	21.3500
+Northwind Traders Boysenberry Spread	6	25.0000
+Northwind Traders Walnuts	14	23.2500
+Northwind Traders Crab Meat	40	18.4000
+Northwind Traders Ravioli	57	19.5000
+Northwind Traders Hot Pepper Sauce	65	21.0500
+Northwind Traders Tomato Sauce	66	17.0000
+Northwind Traders Cake Mix	86	15.9900
+id	FullName
+1	Nancy Freehafer
+2	Andrew Cencini
+3	Jan Kotas
+4	Mariya Sergienko
+5	Steven Thorpe
+6	Michael Neipper
+7	Robert Zare
+8	Laura Giussani
+9	Anne Hellung-Larsen
+id	first_name	last_name
+2	Andrew	Cencini
+9	Anne	Hellung-Larsen
+TotalCities
+4
+ship_name
+Karen Toh
+Christina Lee
+John Edwards
+Elizabeth Andersen
+Soo Jung Lee
+Thomas Axen
+Francisco Pérez-Olaeta
+Amritansh Raghav
+Roland Wacker
+Ming-Yang Xie
+Peter Krschne
+Anna Bedecs
+Sven Mortensen
+John Rodman
+Run Liu
+MinPrice	MaxPrice
+1.2000	81.0000
+ActiveProducts
+36
+AvgPrice	StdDevPrice
+15.84577778	16.555943610664606
+product_name	list_price
+Northwind Traders Chai	18.0000
+Northwind Traders Cajun Seasoning	22.0000
+Northwind Traders Olive Oil	21.3500
+Northwind Traders Boysenberry Spread	25.0000
+Northwind Traders Dried Pears	30.0000
+Northwind Traders Curry Sauce	40.0000
+Northwind Traders Walnuts	23.2500
+Northwind Traders Fruit Cocktail	39.0000
+Northwind Traders Marmalade	81.0000
+Northwind Traders Crab Meat	18.4000
+Northwind Traders Coffee	46.0000
+Northwind Traders Dried Apples	53.0000
+Northwind Traders Gnocchi	38.0000
+Northwind Traders Ravioli	19.5000
+Northwind Traders Hot Pepper Sauce	21.0500
+Northwind Traders Tomato Sauce	17.0000
+Northwind Traders Mozzarella	34.8000
+Northwind Traders Cake Mix	15.9900
