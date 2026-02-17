@@ -1,5 +1,5 @@
 /*
-Enter your query here.
+https://www.hackerrank.com/challenges/draw-the-triangle-1/problem?isFullScreen=true
 */
 
 DELIMITER $$
